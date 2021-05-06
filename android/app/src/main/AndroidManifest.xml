@@ -2,6 +2,7 @@
     package="ducho.com.localiza_aeh">
    <application
         android:label="localiza_aeh"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
 
        <meta-data android:name="com.google.android.geo.API_KEY"
