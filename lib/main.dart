@@ -91,7 +91,15 @@ class HomePage extends State<MyApp> {
           children: [
             Container(
               decoration: BoxDecoration(color:Colors.lightGreen),
-              child: Center( child: Icon(Icons.email)),
+              child:
+              Center(
+                child:
+                Image.asset(
+                  "img/Magnify-1s-200px.gif",
+                  height: 125.0,
+                  width: 125.0,
+                ),
+              ),
             ),
           ],
         ),
