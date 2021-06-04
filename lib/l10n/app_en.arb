@@ -1,0 +1,14 @@
+{
+    "language": "English",
+    "codigo" : "Code",
+    "localizacaoAtual" : "Current Location",
+    "adicionarProduto" : "Add Product",
+    "adicionadoEm" : "Added at",
+    "chegaEm" : "Arrives in",
+    "nome" : "Name",
+    "tipoProduto" : "Product Type",
+    "deletar" : "Delete",
+    "configuracao" : "Configuration",
+    "reordenarProdutos" : "Reorder Products",
+    "adicionar" : "Add"
+}

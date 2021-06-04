@@ -1,0 +1,60 @@
+{
+    "language": "Português",
+    "@language":{
+        "description" : "Lingua corrente"
+    },
+    "codigo" : "Código",
+    "@codigo" : {
+        "description" : "Código postal do produto."
+    },
+
+    "localizacaoAtual" : "Localização Atual",
+    "@localizacaoAtual" : {
+        "description" : "Localização atual do produto."
+    },
+
+    "adicionarProduto" : "Adicionar Produto",
+    "@adicionarProduto" : {
+        "description" : "Titulo de tela para adicionar produto."
+    },
+
+    "adicionadoEm" : "Adicionado em",
+    "@adicionadoEm" : {
+        "description" : "Data em que o produto foi adicionado ao aplicativo."
+    },
+
+    "chegaEm" : "Chega em",
+    "@adicionadoEm" : {
+       "description" : "Expectativa de chegada do produto."
+    },
+
+    "nome" : "Nome",
+    "@nome" : {
+        "description" : "String de identificação do produto."
+    },
+
+    "tipoProduto" : "Tipo Produto",
+    "@tipoProduto" : {
+        "description" : "String que define o tipo de Produto. Ex: Eletrodoméstico, Tecnologia ou outros."
+    },
+
+    "deletar" : "Deletar",
+    "@deletar" : {
+        "description" : "String para deletar produto."
+    },
+
+    "configuracao" : "Configuração",
+    "@configuracao" : {
+        "description" : "String de configuração."
+    },
+
+    "reordenarProdutos" : "Reordenar Produtos",
+    "@reordenarProdutos" : {
+        "description" : "String de Reordenação de Produtos na tela de configuração."
+    },
+
+    "adicionar" : "Adicionar",
+    "@adicionar" : {
+        "description" : "String de Botão adicionar."
+    }
+}

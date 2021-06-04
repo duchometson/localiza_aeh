@@ -9,7 +9,9 @@ import 'producttype.dart';
 import 'main.dart';
 import 'productmap.dart';
 import 'request.dart';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'l10n/l10n.dart';
 List<Product> _products = [];
 
 class Product {
@@ -116,7 +118,8 @@ class Product {
 class ProductCard extends StatefulWidget {
 
   Product product;
-  ProductCard(Product p ) {
+  final BuildContext context;
+  ProductCard(Product p ,{this.context}) {
     this.product = Product.fromProduct(p);
   }
 
@@ -161,7 +164,7 @@ class _ProductCardState extends State<ProductCard> {
         },
         onTap: () {
           print('Card tapped.');
-          Navigator.push(context , MaterialPageRoute(builder: (context) => SingleProductScreen(this.widget.product)),);
+          Navigator.push(this.context , MaterialPageRoute(builder: (context) => SingleProductScreen(this.widget.product, context: this.context)),);
         },
         child: SizedBox(
           width: 300,
@@ -199,9 +202,12 @@ class _ProductCardState extends State<ProductCard> {
 }
 
 class ProductListWidget extends StatefulWidget {
+  final BuildContext context;
+  ProductListWidget({this.context}) { }
+
   @override
   State<ProductListWidget> createState() {
-    return ProductList();
+    return ProductList(context:context);
   }
 }
 
@@ -236,7 +242,10 @@ bool todosProdutosAtualizados() {
 
 class ProductList extends State<ProductListWidget> {
   bool reload = false;
+  final BuildContext context;
 
+
+  ProductList( {this.context} ) {}
   @override
   Widget build(BuildContext context) {
     // if( !todosProdutosAtualizados() ) {
@@ -247,7 +256,7 @@ class ProductList extends State<ProductListWidget> {
         child: ListView.builder(
           itemCount: _products.length,
           itemBuilder: (context, index) {
-            return ProductCard(_products[index]);
+            return ProductCard(_products[index], context:this.context);
           },
         ),
       );
@@ -276,8 +285,9 @@ class ProductList extends State<ProductListWidget> {
 // ignore: must_be_immutable
 class SingleProductScreen extends StatelessWidget {
   Product product;
+  final BuildContext context;
 
-  SingleProductScreen( Product prd ) {
+  SingleProductScreen( Product prd,{this.context} ) {
     this.product = Product.fromProduct(prd);
   }
 
@@ -334,10 +344,10 @@ class SingleProductScreen extends StatelessWidget {
                                 Expanded(
                                   child: Column(
                                     children: [
-                                      TextPadrao("Codigo: ",15),
-                                      TextPadrao("Localização Atual: ",15),
-                                      TextPadrao("Adicionado em:",15),
-                                      TextPadrao("Chega em:",15),
+                                      TextPadrao(AppLocalizations.of(this.context).codigo,15),
+                                      TextPadrao(AppLocalizations.of(this.context).localizacaoAtual,15),
+                                      TextPadrao(AppLocalizations.of(this.context).adicionadoEm,15),
+                                      TextPadrao(AppLocalizations.of(this.context).chegaEm,15),
                                     ],
                                   ),
                                 ),
@@ -471,9 +481,12 @@ class AtualizacaoDeProdutoCard extends StatelessWidget {
 }
 
 class AddProduct extends StatefulWidget {
+  final BuildContext context;
+
+  AddProduct({this.context}) {}
   @override
   State<AddProduct> createState() {
-    return _MyAddProductState();
+    return _MyAddProductState(context:this.context);
   }
 }
 
@@ -482,6 +495,9 @@ class _MyAddProductState extends State<AddProduct> {
   String codAux;
   String prodAux;
   IconData iconAux;
+  final BuildContext context;
+
+  _MyAddProductState({this.context}) {}
 
   @override
   Widget build(BuildContext context) {
@@ -492,7 +508,7 @@ class _MyAddProductState extends State<AddProduct> {
         backgroundColor: Colors.teal,
         appBar: AppBar(
           backgroundColor: Colors.black45,
-          title: Text('Adicionar Produto'),
+          title: Text(AppLocalizations.of(this.context).adicionarProduto),
           leading: IconButton(
             icon: Icon(Icons.arrow_back,color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
@@ -506,7 +522,7 @@ class _MyAddProductState extends State<AddProduct> {
               },
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'Nome',
+                labelText: AppLocalizations.of(this.context).nome,
               ),
             ),
             TextField(
@@ -515,7 +531,7 @@ class _MyAddProductState extends State<AddProduct> {
               },
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'Codigo',
+                labelText: AppLocalizations.of(this.context).codigo,
               ),
             ),
             Row(
@@ -523,7 +539,7 @@ class _MyAddProductState extends State<AddProduct> {
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(
-                    "Tipo do Produto:",
+                    AppLocalizations.of(this.context).tipoProduto,
                     style: TextStyle(
                         fontSize: 17
                     ),
@@ -572,7 +588,7 @@ class _MyAddProductState extends State<AddProduct> {
                   Navigator.pop(context);//push(context , MaterialPageRoute(builder: (context) => MyApp()),);
                 },
                 child: Text(
-                  'Adicionar',
+                  AppLocalizations.of(this.context).adicionar,
                   style: TextStyle(fontSize: 22),
                 ),
               ),
@@ -582,6 +598,9 @@ class _MyAddProductState extends State<AddProduct> {
 }
 
 class ConfigurationScreen extends StatelessWidget {
+  final BuildContext context;
+
+  ConfigurationScreen({this.context}){}
 
   @override
   Widget build(BuildContext context) {
@@ -591,7 +610,7 @@ class ConfigurationScreen extends StatelessWidget {
         backgroundColor: Colors.teal,
         appBar: AppBar(
           backgroundColor: Colors.black45,
-          title: Text("Configuração"),
+          title: Text(AppLocalizations.of(this.context).configuracao),
           leading: IconButton(
             icon: Icon(Icons.arrow_back,color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
@@ -604,7 +623,7 @@ class ConfigurationScreen extends StatelessWidget {
               color: Colors.lightGreen,
               padding: const EdgeInsets.all(20.0),
               alignment: Alignment.center,
-              child: TextPadrao("Reordenar Produtos",15),
+              child: TextPadrao(AppLocalizations.of(this.context).reordenarProdutos,15),
             ),
             Expanded(child: RearangeProduct(), ),
           ],

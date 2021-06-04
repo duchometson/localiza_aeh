@@ -2,6 +2,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'product.dart';
 import 'productmap.dart';
+import 'l10n/l10n.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 
 void main() {
   addProduct( Product("Monitor","OO283250145BR", Icons.add_to_queue) );
@@ -84,6 +89,7 @@ class HomePage extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    BuildContext currentContext = context;
     if( !todosProdutosAtualizados() ) {
       return Scaffold(
         body: Stack(
@@ -106,6 +112,13 @@ class HomePage extends State<MyApp> {
       );
     } else {
       return MaterialApp(
+        localizationsDelegates: [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: l10n.all,
         title: _title,
         theme:
         ThemeData(
@@ -137,7 +150,8 @@ class HomePage extends State<MyApp> {
                   ),
                   onPressed: () {
                     Route route = MaterialPageRoute(
-                        builder: (context) => ConfigurationScreen());
+                        builder: (context) => ConfigurationScreen(context: context,),
+                        settings: RouteSettings(arguments: context));
                     Navigator.push(context, route).then(quandoVoltar);
                   },
                 ),
@@ -148,7 +162,7 @@ class HomePage extends State<MyApp> {
               backgroundColor: Colors.orangeAccent,
               onPressed: () {
                 Route route = MaterialPageRoute(
-                    builder: (context) => AddProduct());
+                    builder: (context) => AddProduct(context: context,));
                 Navigator.push(context, route).then(quandoVoltarAdicao);
               },
               tooltip: 'Increment Counter',
@@ -157,7 +171,7 @@ class HomePage extends State<MyApp> {
             floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
             body: TabBarView(
               children: [
-                ProductListWidget(),
+                ProductListWidget(context:context),
                 ProductMap(getProductList()),
               ],
             ),
