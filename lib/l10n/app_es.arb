@@ -1,0 +1,14 @@
+{
+    "language": "Espanol",
+    "codigo" : "Código",
+    "localizacaoAtual" : "Ubicación Actual.",
+    "adicionarProduto" : "Añadir Producto",
+    "adicionadoEm" : "añadido en",
+    "chegaEm" : "Llega en",
+    "nome" : "Nombre",
+    "tipoProduto" : "Tipo de Producto",
+    "deletar" : "Eliminar",
+    "configuracao" : "Ajustes",
+    "reordenarProdutos" : "Reordenar Productos",
+    "adicionar" : "Agregar"
+}
