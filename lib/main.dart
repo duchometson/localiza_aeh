@@ -119,6 +119,13 @@ class HomePage extends State<MyApp> {
       );
     } else {
       return MaterialApp(
+        localizationsDelegates: [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: l10n.all,
         title: _title,
         theme:
         ThemeData(

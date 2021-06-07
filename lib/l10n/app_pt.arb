@@ -3,6 +3,7 @@
     "@language":{
         "description" : "Lingua corrente"
     },
+
     "codigo" : "Código",
     "@codigo" : {
         "description" : "Código postal do produto."

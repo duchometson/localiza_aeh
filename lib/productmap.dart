@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'dart:async';
 import 'product.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -7,6 +8,16 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class ProductMap extends StatelessWidget {
 
   List<Product> productList = new List<Product>();
+  Position currentPosition;
+  var geoLocator = Geolocator();
+
+  Completer<GoogleMapController> _controller = Completer();
+  GoogleMapController mapController;
+
+  void locatePosition() async {
+    currentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    LatLng latLngPos = LatLng(currentPosition.latitude, currentPosition.longitude);
+  }
 
   LatLng center = const LatLng(45.521563, -122.677433);
   Set<Marker> markers = Set();
@@ -25,9 +36,9 @@ class ProductMap extends StatelessWidget {
     }
   }
 
-  Completer<GoogleMapController> _controller = Completer();
 
   void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
     _controller.complete(controller);
   }
 
@@ -36,6 +47,7 @@ class ProductMap extends StatelessWidget {
     return new GoogleMap(
       markers: markers ,
       onMapCreated: _onMapCreated,
+      myLocationEnabled: true,
       initialCameraPosition: CameraPosition(
         target: center,
         zoom: 10.0,
